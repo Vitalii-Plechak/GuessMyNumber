@@ -24,7 +24,8 @@ class GuessMyNumber {
             low: '📉 Too low',
             high: '📈 Too high',
             correct: '🎉 Correct number',
-            error: '🧐 Something went wrong'
+            error: '🧐 Something went wrong',
+            lose: '🫣 You lose the game!'
         }
 
         this.init();
@@ -44,6 +45,8 @@ class GuessMyNumber {
                 this.setValueToNumberBox();
                 this.messageProcessing();
                 this.setScore();
+
+                this.lose();
 
                 this.guess();
             }
@@ -102,6 +105,9 @@ class GuessMyNumber {
         let message;
 
         switch (true) {
+            case (this.scoreValue === 0):
+                message = this.messageList.lose;
+                break;
             case (this.inputValue < this.randomNumber):
                 message = this.messageList.low;
                 break;
@@ -142,15 +148,32 @@ class GuessMyNumber {
     guess = () => {
         if (this.inputValue === this.randomNumber) {
             const scoreValue = this.scoreValue + 1;
-            const highScoreStorageValue = parseInt(localStorage.getItem(this.highscoreStorageKey));
+            const highScoreStorageValue = parseInt(localStorage.getItem(this.highscoreStorageKey))
+                ? parseInt(localStorage.getItem(this.highscoreStorageKey))
+                : scoreValue;
 
-            if (scoreValue > highScoreStorageValue) {
+            if (scoreValue >= highScoreStorageValue) {
                 this.highscore.textContent = scoreValue;
                 localStorage.setItem(this.highscoreStorageKey, scoreValue);
             }
 
             // Add guessed class to body
             document.querySelector('body').classList.add('guessed');
+
+            // Disable check button after guess
+            this.btnCheck.disabled = true;
+        }
+    }
+
+    /**
+     * Verify if the user lost
+     */
+    lose = () => {
+        const scoreValue = this.scoreValue + 1;
+
+        if (scoreValue === 0) {
+            // Add lose class to body
+            document.querySelector('body').classList.add('lose');
 
             // Disable check button after guess
             this.btnCheck.disabled = true;

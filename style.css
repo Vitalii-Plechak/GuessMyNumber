@@ -21,7 +21,12 @@ body.guessed {
      background-color: #60b347;
 }
 
-body.guessed .btn.again {
+body.lose {
+    background-color: #ff2525;
+}
+
+body.guessed .btn.again,
+body.lose .btn.again {
     box-shadow: 0 0 0 0 rgba(238, 238, 238, 1);
     transform: scale(1);
     animation: pulse-gray 2s infinite;
