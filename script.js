@@ -44,7 +44,7 @@ class GuessMyNumber {
                 this.setValueToNumberBox();
                 this.messageProcessing();
                 this.setScore();
-                
+
                 this.guess();
             }
         });
@@ -141,12 +141,12 @@ class GuessMyNumber {
      */
     guess = () => {
         if (this.inputValue === this.randomNumber) {
-            const highScoreValue = this.scoreValue + 1;
+            const scoreValue = this.scoreValue + 1;
             const highScoreStorageValue = parseInt(localStorage.getItem(this.highscoreStorageKey));
 
-            if (highScoreValue > highScoreStorageValue) {
-                this.highscore.textContent = highScoreValue;
-                localStorage.setItem(this.highscoreStorageKey, highScoreValue);
+            if (scoreValue > highScoreStorageValue) {
+                this.highscore.textContent = scoreValue;
+                localStorage.setItem(this.highscoreStorageKey, scoreValue);
             }
 
             // Add guessed class to body
