@@ -25,7 +25,7 @@ class GuessMyNumber {
             high: '📈 Too high',
             correct: '🎉 Correct number',
             error: '🧐 Something went wrong',
-            lose: '🫣 You lose the game!'
+            lost: '🫣 You lost the game!'
         }
 
         this.init();
@@ -106,7 +106,7 @@ class GuessMyNumber {
 
         switch (true) {
             case (this.scoreValue === 0):
-                message = this.messageList.lose;
+                message = this.messageList.lost;
                 break;
             case (this.inputValue < this.randomNumber):
                 message = this.messageList.low;
