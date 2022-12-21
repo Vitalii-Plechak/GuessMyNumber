@@ -49,6 +49,10 @@ body.lose .btn.again {
     }
 }
 
+body.guessed .number {
+    width: 30rem;
+}
+
 /* LAYOUT */
 header {
     position: relative;
